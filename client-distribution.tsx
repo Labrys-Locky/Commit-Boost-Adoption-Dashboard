@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Shield, Zap, Users, Code, Globe, XCircle, Quote } from "lucide-react"
+import { ExternalLink, Shield, Zap, Users, Code, Globe, XCircle, Quote, Github } from "lucide-react"
 import Image from "next/image"
 
 function HeroSection() {
@@ -208,9 +208,9 @@ function FeatureCard({ icon: Icon, title, description }: { icon: any; title: str
   )
 }
 
-function TestimonialCard({ quote, author }: { quote: string; author: string }) {
-  return (
-    <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+function TestimonialCard({ quote, author, link }: { quote: string; author: string; link?: string }) {
+  const content = (
+    <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-blue-400/50 transition-all duration-300">
       <div className="flex mb-4">
         <div
           className="w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0"
@@ -220,9 +220,22 @@ function TestimonialCard({ quote, author }: { quote: string; author: string }) {
         </div>
         <p className="text-gray-300 italic leading-relaxed">{quote}</p>
       </div>
-      <p className="text-sm text-blue-300 text-right">{author}</p>
+      <div className="flex items-center justify-between">
+        <p className="text-sm text-blue-300">{author}</p>
+        {link && <ExternalLink className="w-4 h-4 text-gray-400" />}
+      </div>
     </div>
   )
+
+  if (link) {
+    return (
+      <a href={link} target="_blank" rel="noopener noreferrer" className="block">
+        {content}
+      </a>
+    )
+  }
+
+  return content
 }
 
 function WhatIsSection() {
@@ -279,21 +292,43 @@ function WhatIsSection() {
       quote:
         "Great performance, high integrity team. Having a single top-notch sidecar reduces the risk surface of preconfs a lot.",
       author: "Node Operator",
+      link: "https://x.com/mostlyblocks/status/1884594976723489105",
     },
     {
       quote:
         'Thanks to the team for building credibly neutral, open-source Ethereum tooling. We fear a "sidecar-hell" is approaching Ethereum staking and CB is looking like a path to redemption.',
-      author: "Staking Pool",
+      author: "Client Team",
+      link: "https://x.com/sigp_io/status/1884428998211686434",
     },
     {
       quote:
         "A big shoutout to the people working on Commit-Boost—having all these metrics at our fingertips is incredibly useful.",
-      author: "Validator",
+      author: "DVT Node Operator",
+      link: "https://x.com/SerenitaIO/status/1883986467925680172",
     },
     {
       quote:
         "We think Commit Boost is an essential piece of the puzzle to achieve L1 pre-confirmations and improve Ethereum by enabling new block production flows.",
-      author: "Protocol Developer",
+      author: "Node Operator",
+      link: "https://x.com/Kiln_finance/status/1889295745754239369",
+    },
+    {
+      quote:
+        "Unlike typical operating systems where there is little choice and vendor lock-in, Commit-Boost works like an app-store, where any developer and team can create Apps or 'modules' for Validators...",
+      author: "Module Developer",
+      link: "https://www.ethgas.com/blog/how-ethgas-works-with-commit-boost-to-boost-apys",
+    },
+    {
+      quote:
+        "The importance of Commit-Boost cannot be overstated, especially as we stand on the brink of a proposer-commitment renaissance.",
+      author: "LRT, Preconf, Based rollup",
+      link: "https://medium.com/puffer-fi/puffer-embraces-commit-boost-standardizing-the-future-of-proposer-commitments-01ee9ef2f1e3",
+    },
+    {
+      quote:
+        "Based rollups are emerging as Ethereum's most aligned scaling path — but to get there, we need shared infrastructure, common language, and open standards.",
+      author: "Based Rollup",
+      link: "https://taiko.mirror.xyz/7_FNvOGfu81imp6A6EucFDoRcKU6E94j4izNEPiugmE",
     },
   ]
 
@@ -358,13 +393,19 @@ function WhatIsSection() {
 
         {/* Testimonials Section */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-white text-center mb-8">What Node Operators Are Saying</h3>
+          <h3 className="text-3xl font-bold text-white text-center mb-8">Examples of What the Community Is Saying</h3>
           <p className="text-center text-gray-300 mb-12 max-w-3xl mx-auto">
-            Commit-Boost is used by some of the top Node Operators across Ethereum. Here is what they are saying:
+            Commit-Boost is being used and supported by all shapes and sizes of validators and by multiple types of
+            teams building modules.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {testimonials.map((testimonial, index) => (
-              <TestimonialCard key={index} quote={testimonial.quote} author={testimonial.author} />
+              <TestimonialCard
+                key={index}
+                quote={testimonial.quote}
+                author={testimonial.author}
+                link={testimonial.link}
+              />
             ))}
           </div>
         </div>
@@ -381,7 +422,7 @@ export default function Component() {
 
       {/* Footer */}
       <div className="bg-slate-900 py-12 border-t border-white/10">
-        <div className="text-center">
+        <div className="text-center space-y-4">
           <Button
             variant="outline"
             className="bg-white/5 border-white/20 text-white hover:bg-white/10 hover:border-blue-400/50 transition-all duration-300"
@@ -391,6 +432,18 @@ export default function Component() {
           >
             Commit-Boost Terms of Use
           </Button>
+
+          <div className="pt-4">
+            <a
+              href="https://github.com/Labrys-Locky/Commit-Boost-Adoption-Dashboard"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-gray-400 hover:text-blue-300 transition-colors text-sm"
+            >
+              <Github className="w-4 h-4" />
+              Made by the Commit-Boost Community
+            </a>
+          </div>
         </div>
       </div>
     </div>
