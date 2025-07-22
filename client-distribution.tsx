@@ -83,7 +83,7 @@ function HeroSection() {
                     filter: "drop-shadow(0 4px 8px rgba(18, 3, 108, 0.3))",
                   }}
                 >
-                  9.5%
+                  13.5%
                 </span>
               </div>
               <p className="text-lg text-gray-300">of Ethereum mainnet validators using Commit-Boost</p>
@@ -94,7 +94,7 @@ function HeroSection() {
               <div
                 className="absolute top-0 left-0 h-full rounded-full transition-all duration-2000 ease-out"
                 style={{
-                  width: "9.5%",
+                  width: "13.5%",
                   background: "linear-gradient(90deg, #12036c 0%, #1e40af 50%, #3b82f6 100%)",
                   boxShadow: "0 0 20px rgba(18, 3, 108, 0.5)",
                 }}
@@ -105,7 +105,7 @@ function HeroSection() {
               {/* Progress indicator */}
               <div
                 className="absolute top-0 h-6 w-1 bg-white rounded-full shadow-lg transform -translate-x-1/2 transition-all duration-2000 ease-out"
-                style={{ left: "9.5%" }}
+                style={{ left: "13.5%" }}
               ></div>
             </div>
 
