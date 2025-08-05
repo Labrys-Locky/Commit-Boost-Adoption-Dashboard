@@ -76,8 +76,6 @@ function HeroSection() {
               Ethereum Mainnet Adoption of Validators Running a Sidecar
             </h2>
 
-            {/* Sidecar comparison */}
-
             {/* Combined progress bar */}
             <div className="relative w-full h-16 bg-white/20 rounded-full overflow-hidden mb-6">
               {/* Commit-Boost segment */}
