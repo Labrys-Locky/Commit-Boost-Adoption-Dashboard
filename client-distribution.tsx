@@ -82,7 +82,7 @@ function HeroSection() {
               <div className="flex flex-col items-center">
                 <div className="flex items-center justify-between w-full mb-2">
                   <span className="text-lg font-semibold text-white">Commit-Boost</span>
-                  <span className="text-2xl font-bold text-white">17%</span>
+                  <span className="text-2xl font-bold text-white">13.5%</span>
                 </div>
               </div>
 
@@ -104,43 +104,46 @@ function HeroSection() {
             </div>
 
             {/* Combined progress bar */}
-            <div className="relative w-full h-8 bg-white/20 rounded-full overflow-hidden mb-6">
+            <div className="relative w-full h-16 bg-white/20 rounded-full overflow-hidden mb-6">
               {/* Commit-Boost segment */}
               <div
-                className="absolute top-0 left-0 h-full transition-all duration-2000 ease-out"
+                className="absolute top-0 left-0 h-full transition-all duration-2000 ease-out flex items-center justify-center"
                 style={{
-                  width: "17%",
+                  width: "13.5%",
                   background: "linear-gradient(90deg, #12036c 0%, #1e40af 50%, #3b82f6 100%)",
                   boxShadow: "0 0 20px rgba(18, 3, 108, 0.5)",
                 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
+                <span className="relative z-10 text-white font-bold text-sm">13.5%</span>
               </div>
 
               {/* Vouch segment */}
               <div
-                className="absolute top-0 h-full transition-all duration-2000 ease-out"
+                className="absolute top-0 h-full transition-all duration-2000 ease-out flex items-center justify-center"
                 style={{
-                  left: "17%",
+                  left: "13.5%",
                   width: "14.5%",
                   background: "linear-gradient(90deg, #059669 0%, #10b981 50%, #34d399 100%)",
                   boxShadow: "0 0 20px rgba(5, 150, 105, 0.5)",
                 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse delay-500"></div>
+                <span className="relative z-10 text-white font-bold text-sm">14.5%</span>
               </div>
 
               {/* MEV-Boost segment */}
               <div
-                className="absolute top-0 h-full transition-all duration-2000 ease-out"
+                className="absolute top-0 h-full transition-all duration-2000 ease-out flex items-center justify-center"
                 style={{
-                  left: "31.5%",
+                  left: "28%",
                   width: "72%",
                   background: "linear-gradient(90deg, #dc2626 0%, #ef4444 50%, #f87171 100%)",
                   boxShadow: "0 0 20px rgba(220, 38, 38, 0.5)",
                 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse delay-1000"></div>
+                <span className="relative z-10 text-white font-bold text-lg">72%</span>
               </div>
             </div>
 
