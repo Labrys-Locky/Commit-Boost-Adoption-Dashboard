@@ -77,31 +77,6 @@ function HeroSection() {
             </h2>
 
             {/* Sidecar comparison */}
-            <div className="space-y-8 mb-8">
-              {/* Commit-Boost */}
-              <div className="flex flex-col items-center">
-                <div className="flex items-center justify-between w-full mb-2">
-                  <span className="text-lg font-semibold text-white">Commit-Boost</span>
-                  <span className="text-2xl font-bold text-white">13.5%</span>
-                </div>
-              </div>
-
-              {/* Vouch */}
-              <div className="flex flex-col items-center">
-                <div className="flex items-center justify-between w-full mb-2">
-                  <span className="text-lg font-semibold text-white">Vouch</span>
-                  <span className="text-2xl font-bold text-white">14.5%</span>
-                </div>
-              </div>
-
-              {/* MEV-Boost */}
-              <div className="flex flex-col items-center">
-                <div className="flex items-center justify-between w-full mb-2">
-                  <span className="text-lg font-semibold text-white">MEV-Boost</span>
-                  <span className="text-2xl font-bold text-white">72%</span>
-                </div>
-              </div>
-            </div>
 
             {/* Combined progress bar */}
             <div className="relative w-full h-16 bg-white/20 rounded-full overflow-hidden mb-6">
