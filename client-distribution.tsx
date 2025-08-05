@@ -72,27 +72,42 @@ function HeroSection() {
 
           {/* Adoption Stats Card */}
           <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-6">Ethereum Mainnet Adoption</h2>
+            <h2 className="text-2xl font-semibold text-white mb-6">
+              Ethereum Mainnet Adoption of Validators Running a Sidecar
+            </h2>
 
-            <div className="flex flex-col items-center mb-8">
-              <div className="relative text-8xl font-bold mb-4">
-                <span
-                  className="text-white"
-                  style={{
-                    textShadow: "0 0 30px rgba(59, 130, 246, 0.8), 0 0 60px rgba(59, 130, 246, 0.4)",
-                    filter: "drop-shadow(0 4px 8px rgba(18, 3, 108, 0.3))",
-                  }}
-                >
-                  17%
-                </span>
+            {/* Sidecar comparison */}
+            <div className="space-y-8 mb-8">
+              {/* Commit-Boost */}
+              <div className="flex flex-col items-center">
+                <div className="flex items-center justify-between w-full mb-2">
+                  <span className="text-lg font-semibold text-white">Commit-Boost</span>
+                  <span className="text-2xl font-bold text-white">17%</span>
+                </div>
               </div>
-              <p className="text-lg text-gray-300">of Ethereum mainnet validators using Commit-Boost</p>
+
+              {/* Vouch */}
+              <div className="flex flex-col items-center">
+                <div className="flex items-center justify-between w-full mb-2">
+                  <span className="text-lg font-semibold text-white">Vouch</span>
+                  <span className="text-2xl font-bold text-white">14.5%</span>
+                </div>
+              </div>
+
+              {/* MEV-Boost */}
+              <div className="flex flex-col items-center">
+                <div className="flex items-center justify-between w-full mb-2">
+                  <span className="text-lg font-semibold text-white">MEV-Boost</span>
+                  <span className="text-2xl font-bold text-white">72%</span>
+                </div>
+              </div>
             </div>
 
-            {/* Modern progress bar */}
-            <div className="relative w-full h-6 bg-white/20 rounded-full overflow-hidden mb-6">
+            {/* Combined progress bar */}
+            <div className="relative w-full h-8 bg-white/20 rounded-full overflow-hidden mb-6">
+              {/* Commit-Boost segment */}
               <div
-                className="absolute top-0 left-0 h-full rounded-full transition-all duration-2000 ease-out"
+                className="absolute top-0 left-0 h-full transition-all duration-2000 ease-out"
                 style={{
                   width: "17%",
                   background: "linear-gradient(90deg, #12036c 0%, #1e40af 50%, #3b82f6 100%)",
@@ -102,16 +117,56 @@ function HeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
               </div>
 
-              {/* Progress indicator */}
+              {/* Vouch segment */}
               <div
-                className="absolute top-0 h-6 w-1 bg-white rounded-full shadow-lg transform -translate-x-1/2 transition-all duration-2000 ease-out"
-                style={{ left: "17%" }}
-              ></div>
+                className="absolute top-0 h-full transition-all duration-2000 ease-out"
+                style={{
+                  left: "17%",
+                  width: "14.5%",
+                  background: "linear-gradient(90deg, #059669 0%, #10b981 50%, #34d399 100%)",
+                  boxShadow: "0 0 20px rgba(5, 150, 105, 0.5)",
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse delay-500"></div>
+              </div>
+
+              {/* MEV-Boost segment */}
+              <div
+                className="absolute top-0 h-full transition-all duration-2000 ease-out"
+                style={{
+                  left: "31.5%",
+                  width: "72%",
+                  background: "linear-gradient(90deg, #dc2626 0%, #ef4444 50%, #f87171 100%)",
+                  boxShadow: "0 0 20px rgba(220, 38, 38, 0.5)",
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse delay-1000"></div>
+              </div>
             </div>
 
-            <div className="flex justify-between text-sm text-gray-400 mb-6">
-              <span>0%</span>
-              <span>100%</span>
+            {/* Legend */}
+            <div className="flex flex-wrap justify-center gap-6 mb-6">
+              <div className="flex items-center gap-2">
+                <div
+                  className="w-4 h-4 rounded-full"
+                  style={{ background: "linear-gradient(90deg, #12036c 0%, #3b82f6 100%)" }}
+                ></div>
+                <span className="text-sm text-white">Commit-Boost</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div
+                  className="w-4 h-4 rounded-full"
+                  style={{ background: "linear-gradient(90deg, #059669 0%, #34d399 100%)" }}
+                ></div>
+                <span className="text-sm text-white">Vouch</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div
+                  className="w-4 h-4 rounded-full"
+                  style={{ background: "linear-gradient(90deg, #dc2626 0%, #f87171 100%)" }}
+                ></div>
+                <span className="text-sm text-white">MEV-Boost</span>
+              </div>
             </div>
 
             <div
@@ -120,7 +175,8 @@ function HeroSection() {
             >
               <p className="text-sm text-blue-200">
                 The data is based on self-reported information from staking entities and heuristics provided by various
-                relays. Validator setups that cannot be identified are assumed not to be running Commit-Boost.
+                relays. These percentages are based on the population of validators / blocks that are not running a
+                sidecar.
               </p>
             </div>
           </div>
