@@ -29,7 +29,7 @@ export default function RootLayout({
       <head>
         <link rel="preload" href="/fonts/GeistVF.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased" suppressHydrationWarning={true}>{children}</body>
     </html>
   )
 }
