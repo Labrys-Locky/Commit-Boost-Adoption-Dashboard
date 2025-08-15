@@ -1,6 +1,5 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { geistSans } from "./fonts"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -26,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistSans.className}`}>
+    <html lang="en">
       <head>
         <link rel="preload" href="/fonts/GeistVF.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
