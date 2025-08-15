@@ -31,7 +31,6 @@ Commit-Boost is an open-source public good developed as a standardized sidecar f
 - **UI Components**: shadcn/ui
 - **Icons**: Lucide React
 - **Deployment**: Vercel
-- **Development**: Built with [v0.dev](https://v0.dev)
 
 ## Getting Started
 
@@ -60,29 +59,12 @@ npm run dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Contributing
-
-We welcome contributions from the community! Whether it's:
-
-- 🐛 Bug reports
-- 💡 Feature suggestions
-- 📝 Documentation improvements
-- 🔧 Code contributions
-
-Please feel free to open an issue or submit a pull request.
-
-### Development Workflow
-
-This project is built and maintained using [v0.dev](https://v0.dev). Major changes and new features are developed through the v0 interface and then synced to this repository.
-
 ## Data Sources
 
 The adoption data displayed on this dashboard is based on:
 - Self-reported information from staking entities
 - Heuristics provided by various relays
 - Community feedback and verification
-
-*Note: Validator setups that cannot be identified are assumed not to be running Commit-Boost.*
 
 ## Community
 
@@ -97,12 +79,10 @@ This project is open source and available under the [MIT License](LICENSE).
 ## Acknowledgments
 
 - Built by the Commit-Boost Community
-- Powered by [v0.dev](https://v0.dev)
-- Deployed on [Vercel](https://vercel.com)
 - Special thanks to all the validators, node operators, and developers who make Commit-Boost possible
 
 ---
 
-**Live Site**: [https://commit-boost-adoption.vercel.app](https://commit-boost-adoption.vercel.app)
+**Live Site**: [https://www.commit-boost.org/](https://www.commit-boost.org/)
 
 Made with ❤️ by the Commit-Boost Community
