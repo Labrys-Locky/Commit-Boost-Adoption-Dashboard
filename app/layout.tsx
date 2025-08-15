@@ -1,5 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
+import { geistSans } from "./fonts"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -25,8 +26,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={`${geistSans.variable} ${geistSans.className}`}>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   )
 }
