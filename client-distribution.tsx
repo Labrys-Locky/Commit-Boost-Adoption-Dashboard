@@ -2,8 +2,36 @@
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Shield, Zap, Users, Code, Globe, XCircle, Quote, Github } from "lucide-react"
 import Image from "next/image"
+import { useState, useEffect } from "react"
+import AdoptionChart from "@/components/AdoptionChart"
 
 function HeroSection() {
+  const [adoptionData, setAdoptionData] = useState({ 
+    percentage: 20, 
+    chartData: [], 
+    loading: true 
+  });
+
+  useEffect(() => {
+    const fetchAdoptionData = async () => {
+      try {
+        const response = await fetch('/api/grafana-data');
+        const data = await response.json();
+        const commitBoostPercentage = Math.round(data.latest.agents['commit-boost'] * 100);
+        setAdoptionData({ 
+          percentage: commitBoostPercentage, 
+          chartData: data.chartData || [],
+          loading: false 
+        });
+      } catch (error) {
+        console.error('Failed to fetch adoption data:', error);
+        setAdoptionData({ percentage: 20, chartData: [], loading: false });
+      }
+    };
+
+    fetchAdoptionData();
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 overflow-hidden">
       {/* Animated background elements */}
@@ -72,46 +100,12 @@ function HeroSection() {
 
           {/* Adoption Stats Card */}
           <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-6">Ethereum Mainnet Adoption</h2>
+            <h2 className="text-2xl font-semibold text-white mb-6">Estimated Percentage Share of Sidecars Used by Validators</h2>
 
-            <div className="flex flex-col items-center mb-8">
-              <div className="relative text-8xl font-bold mb-4">
-                <span
-                  className="text-white"
-                  style={{
-                    textShadow: "0 0 30px rgba(59, 130, 246, 0.8), 0 0 60px rgba(59, 130, 246, 0.4)",
-                    filter: "drop-shadow(0 4px 8px rgba(18, 3, 108, 0.3))",
-                  }}
-                >
-                  20%
-                </span>
-              </div>
-              <p className="text-lg text-gray-300">of Ethereum mainnet validators using Commit-Boost</p>
-            </div>
 
-            {/* Modern progress bar */}
-            <div className="relative w-full h-6 bg-white/20 rounded-full overflow-hidden mb-6">
-              <div
-                className="absolute top-0 left-0 h-full rounded-full transition-all duration-2000 ease-out"
-                style={{
-                  width: "20%",
-                  background: "linear-gradient(90deg, #12036c 0%, #1e40af 50%, #3b82f6 100%)",
-                  boxShadow: "0 0 20px rgba(18, 3, 108, 0.5)",
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
-              </div>
-
-              {/* Progress indicator */}
-              <div
-                className="absolute top-0 h-6 w-1 bg-white rounded-full shadow-lg transform -translate-x-1/2 transition-all duration-2000 ease-out"
-                style={{ left: "20%" }}
-              ></div>
-            </div>
-
-            <div className="flex justify-between text-sm text-gray-400 mb-6">
-              <span>0%</span>
-              <span>100%</span>
+            {/* Adoption Chart */}
+            <div className="mb-6">
+              <AdoptionChart data={adoptionData.chartData} loading={adoptionData.loading} />
             </div>
 
             <div
@@ -120,7 +114,7 @@ function HeroSection() {
             >
               <p className="text-sm text-blue-200">
                 The data is based on self-reported information from staking entities and heuristics provided by various
-                relays. Validator setups that cannot be identified are assumed not to be running Commit-Boost.
+                relays.
               </p>
             </div>
           </div>
