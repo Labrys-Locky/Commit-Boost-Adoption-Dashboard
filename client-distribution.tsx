@@ -100,22 +100,8 @@ function HeroSection() {
 
           {/* Adoption Stats Card */}
           <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-6">The Fastest Growing Sidecar on ETH Mainnet</h2>
+            <h2 className="text-2xl font-semibold text-white mb-6">Estimated Percentage Share of Sidecars Used by Validators</h2>
 
-            <div className="flex flex-col items-center mb-8">
-              <div className="relative text-8xl font-bold mb-4">
-                <span
-                  className="text-white"
-                  style={{
-                    textShadow: "0 0 30px rgba(59, 130, 246, 0.8), 0 0 60px rgba(59, 130, 246, 0.4)",
-                    filter: "drop-shadow(0 4px 8px rgba(18, 3, 108, 0.3))",
-                  }}
-                >
-                  {adoptionData.loading ? '...' : `${adoptionData.percentage}%`}
-                </span>
-              </div>
-              <p className="text-lg text-gray-300">of Ethereum mainnet validators using Commit-Boost</p>
-            </div>
 
             {/* Adoption Chart */}
             <div className="mb-6">

@@ -97,10 +97,10 @@ export default function AdoptionChart({ data, loading }: AdoptionChartProps) {
           <Line
             type="monotone"
             dataKey="commit-boost"
-            stroke="#3b82f6"
+            stroke="#ffffff"
             strokeWidth={3}
             dot={false}
-            activeDot={{ r: 6, stroke: '#3b82f6', strokeWidth: 2 }}
+            activeDot={{ r: 6, stroke: '#ffffff', strokeWidth: 2 }}
             name="Commit-Boost"
           />
           <Line
@@ -115,10 +115,10 @@ export default function AdoptionChart({ data, loading }: AdoptionChartProps) {
           <Line
             type="monotone"
             dataKey="vouch"
-            stroke="#10b981"
+            stroke="#3b82f6"
             strokeWidth={3}
             dot={false}
-            activeDot={{ r: 6, stroke: '#10b981', strokeWidth: 2 }}
+            activeDot={{ r: 6, stroke: '#3b82f6', strokeWidth: 2 }}
             name="Vouch"
           />
         </LineChart>
