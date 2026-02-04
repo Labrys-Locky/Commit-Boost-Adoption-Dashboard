@@ -1,4 +1,5 @@
 "use client"
+import { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 
 interface ChartDataPoint {
@@ -6,9 +7,10 @@ interface ChartDataPoint {
   date: string;
   month: string;
   monthLabel?: string;
-  'commit-boost': number;
-  'mev-boost': number;
-  'vouch': number;
+  tickLabel?: string;
+  'commit-boost': number | null;
+  'mev-boost': number | null;
+  'vouch': number | null;
 }
 
 interface AdoptionChartProps {
@@ -21,11 +23,13 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     return (
       <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-3 shadow-lg">
         <p className="text-white text-sm font-medium mb-2">{label}</p>
-        {payload.map((entry: any, index: number) => (
-          <p key={index} style={{ color: entry.color }} className="text-sm">
-            {entry.dataKey}: {entry.value.toFixed(1)}%
-          </p>
-        ))}
+        {payload
+          .filter((entry: any) => entry?.value != null)
+          .map((entry: any, index: number) => (
+            <p key={index} style={{ color: entry.color }} className="text-sm">
+              {entry.dataKey}: {Number(entry.value).toFixed(1)}%
+            </p>
+          ))}
       </div>
     );
   }
@@ -49,39 +53,69 @@ export default function AdoptionChart({ data, loading }: AdoptionChartProps) {
     );
   }
 
-  // Process data to show each month label only once
+  // Process data to show each month label only once (used for tooltip label)
   const processedData = data.map((item, index) => {
     const currentMonth = item.month;
     const prevMonth = index > 0 ? data[index - 1].month : null;
-    
+
     return {
       ...item,
-      monthLabel: currentMonth !== prevMonth ? currentMonth : ' ' // Space character for duplicate months
+      monthLabel: currentMonth !== prevMonth ? currentMonth : ' '
     };
   });
-  
+
   const sampledData = processedData;
 
+  // Reduce x-axis label density on small screens to prevent overlaps.
+  // Instead of using a categorical axis (which can “bunch up” labels), use a time axis
+  // with explicit ticks at month boundaries.
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 640px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener?.('change', update);
+    return () => mq.removeEventListener?.('change', update);
+  }, []);
+
+  const monthStartIndexes = sampledData
+    .map((d, i) => ({ d, i }))
+    .filter(({ d, i }) => i === 0 || d.month !== sampledData[i - 1].month);
+
+  const desiredTicks = isMobile ? 6 : 12;
+  const step = Math.max(1, Math.ceil(monthStartIndexes.length / desiredTicks));
+  const tickIndexSet = new Set(monthStartIndexes.filter((_, i) => i % step === 0).map(({ i }) => i));
+
+  const chartData = sampledData.map((d, i) => ({
+    ...d,
+    // Only show a month label at selected month boundaries; otherwise blank.
+    tickLabel: tickIndexSet.has(i) ? d.month : ''
+  }));
+
   return (
-    <div className="h-80 w-full">
+    <div className="h-64 sm:h-80 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
-          data={sampledData}
+          data={chartData}
           margin={{
             top: 20,
-            right: 30,
-            left: 20,
-            bottom: 20,
+            right: 20,
+            left: 12,
+            bottom: isMobile ? 36 : 20,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis 
-            dataKey="monthLabel" 
+          <XAxis
+            dataKey="tickLabel"
             stroke="rgba(255,255,255,0.7)"
             fontSize={12}
             tick={{ fill: 'rgba(255,255,255,0.7)' }}
             interval={0}
+            minTickGap={18}
             tickLine={false}
+            angle={isMobile ? -30 : 0}
+            textAnchor={isMobile ? 'end' : 'middle'}
+            height={isMobile ? 42 : 30}
           />
           <YAxis 
             stroke="rgba(255,255,255,0.7)"
